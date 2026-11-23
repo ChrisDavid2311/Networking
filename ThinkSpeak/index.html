@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Raspberry Pi Monitor</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 1000px; margin: 24px auto; padding: 0 16px; }
+    .charts { display: flex; flex-wrap: wrap; gap: 12px; }
+    iframe { border: 1px solid #ccc; max-width: 100%; }
+    button { padding: 10px 18px; margin: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Raspberry Pi Monitor</h1>
+  <p>CPU temperature, rolling average temperature, and CPU usage.</p>
+
+  <div class="charts">
+    <iframe title="CPU temperature" width="450" height="260"
+      src="https://thingspeak.com/channels/3592265/charts/1?dynamic=true&results=60&type=line"></iframe>
+
+    <iframe title="Average temperature" width="450" height="260"
+      src="https://thingspeak.com/channels/3592265/widgets/1337968"></iframe>
+
+    <iframe title="CPU usage" width="450" height="260"
+      src="https://thingspeak.com/channels/3592265/charts/3?dynamic=true&results=60&type=line"></iframe>
+  </div>
+
+  <h2>LED control</h2>
+  <form action="talkback-command.php" method="post">
+    <label>
+      Control password:
+      <input type="password" name="control_password" required>
+    </label>
+    <button type="submit" name="command" value="ON">LED ON</button>
+    <button type="submit" name="command" value="OFF">LED OFF</button>
+  </form>
+</body>
+</html>
